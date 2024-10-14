@@ -16,9 +16,6 @@ app.use(cookieParser());
 
 const PORT = process.env.PORT || 4040;
 
-app.get("/", (req, res) => {
-  res.send("Server Home!");
-});
 
 app.use(express.json());
 app.use("/api/auth", require("./routes/main.routes"));
