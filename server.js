@@ -11,15 +11,20 @@ app.use(
     origin: [
       "http://localhost:5173",
       "https://local-frontend-mauve.vercel.app",
-    ], // Replace with your Vercel frontend URL
+    ],
     credentials: true,
   })
 );
+
+app.options("*", cors());
+
 app.use(cookieParser());
 
 const PORT = process.env.PORT || 4040;
 
 app.get("/", (req, res) => {
+  console.log("Home route accessed");
+  console.log("Cookies:", req.cookies);
   res.send("Server Home!");
 });
 
