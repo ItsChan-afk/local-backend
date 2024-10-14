@@ -2,29 +2,17 @@ const express = require("express");
 const dbConnection = require("./database/dbConnection");
 const dotenv = require("dotenv").config();
 const cors = require("cors");
-const cookieParser = require("cookie-parser");
 const app = express();
 
-//Cross Origin Resource Sharing
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      "https://local-frontend-mauve.vercel.app",
-    ],
-    credentials: true,
-  })
-);
-
-app.options("*", cors());
-
-app.use(cookieParser());
+// Cross-Origin Resource Sharing
+app.use(cors({
+  origin: "https://local-frontend-mauve.vercel.app", // Allow requests from your frontend
+  credentials: true // Allow cookies to be sent with requests
+}));
 
 const PORT = process.env.PORT || 4040;
 
 app.get("/", (req, res) => {
-  console.log("Home route accessed");
-  console.log("Cookies:", req.cookies);
   res.send("Server Home!");
 });
 
@@ -34,5 +22,5 @@ app.use("/api/exam", require("./routes/question.routes"));
 
 app.listen(PORT, () => {
   dbConnection();
-  console.log(`PORT : ${PORT} has started !`);
+  console.log(`PORT : ${PORT} has started!`);
 });
