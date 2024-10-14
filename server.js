@@ -8,8 +8,11 @@ const app = express();
 //Cross Origin Resource Sharing
 app.use(
   cors({
-    origin: "http://localhost:5173", // Replace with your frontend URL
-    credentials: true, // This allows the browser to send and receive cookies
+    origin: [
+      "http://localhost:5173",
+      "https://your-vercel-frontend.vercel.app",
+    ], // Replace with your Vercel frontend URL
+    credentials: true,
   })
 );
 app.use(cookieParser());
