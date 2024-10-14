@@ -10,7 +10,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://your-vercel-frontend.vercel.app",
+      "https://local-frontend-mauve.vercel.app",
     ], // Replace with your Vercel frontend URL
     credentials: true,
   })
