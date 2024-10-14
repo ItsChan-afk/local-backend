@@ -16,10 +16,10 @@ app.use(
   })
 );
 
-// app.use((req, res, next) => {
-//   console.log(`Incoming request: ${req.method} ${req.url}`, req.headers);
-//   next();
-// });
+app.use((req, res, next) => {
+  console.log(`Incoming request: ${req.method} ${req.url}`, req.headers);
+  next();
+});
 
 app.use(cookieParser())
 
