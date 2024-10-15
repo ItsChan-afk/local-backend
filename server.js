@@ -21,6 +21,10 @@ app.use(
   })
 );
 
+const workingdb = dbConnection()
+  .then(() => console.log("Database connected"))
+  .catch((err) => console.error("Database connection failed", err));
+
 app.use((req, res, next) => {
   console.log(`Incoming request: ${req.method} ${req.url}`, req.headers);
   next();
@@ -31,7 +35,7 @@ app.use(cookieParser());
 const PORT = process.env.PORT || 4040;
 
 app.get("/", (req, res) => {
-  res.send("Server Home!");
+  res.send(workingdb);
 });
 
 app.use(express.json());
@@ -39,8 +43,5 @@ app.use("/api/auth", require("./routes/main.routes"));
 app.use("/api/exam", require("./routes/question.routes"));
 
 app.listen(PORT, () => {
-  dbConnection()
-    .then(() => console.log("Database connected"))
-    .catch((err) => console.error("Database connection failed", err));
   console.log(`PORT : ${PORT} has started!`);
 });
