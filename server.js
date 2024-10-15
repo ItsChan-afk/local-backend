@@ -39,6 +39,8 @@ app.use("/api/auth", require("./routes/main.routes"));
 app.use("/api/exam", require("./routes/question.routes"));
 
 app.listen(PORT, () => {
-  dbConnection();
+  dbConnection()
+    .then(() => console.log("Database connected"))
+    .catch((err) => console.error("Database connection failed", err));
   console.log(`PORT : ${PORT} has started!`);
 });
