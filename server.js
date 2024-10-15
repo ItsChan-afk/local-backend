@@ -3,11 +3,7 @@ const dbConnection = require("./database/dbConnection");
 const dotenv = require("dotenv").config();
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const timeout = require("connect-timeout");
-
 const app = express();
-
-app.use(timeout("20s")); // Set a timeout of 10 seconds
 
 app.use((req, res, next) => {
   if (!req.timedout) next(); // If the request hasn't timed out, proceed
