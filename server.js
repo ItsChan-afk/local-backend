@@ -15,6 +15,7 @@ app.use(
     origin: [
       "https://local-frontend-mauve.vercel.app",
       "http://localhost:5173",
+      "https://local-backend-inky.vercel.app",
     ], // Allow requests from your frontend
     credentials: true, // Allow cookies to be sent with requests
   })
