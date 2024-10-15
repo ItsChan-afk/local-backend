@@ -21,9 +21,17 @@ app.use(
   })
 );
 
-const workingdb = dbConnection()
-  .then(() => console.log("Database connected"))
-  .catch((err) => console.error("Database connection failed", err));
+let dbConnectionStatus = "Database not connected"; // default status
+
+dbConnection()
+  .then(() => {
+    dbConnectionStatus = "Database connected successfully";
+    console.log(dbConnectionStatus);
+  })
+  .catch((err) => {
+    dbConnectionStatus = "Database connection failed: " + err.message;
+    console.error(dbConnectionStatus);
+  });
 
 app.use((req, res, next) => {
   console.log(`Incoming request: ${req.method} ${req.url}`, req.headers);
@@ -35,7 +43,7 @@ app.use(cookieParser());
 const PORT = process.env.PORT || 4040;
 
 app.get("/", (req, res) => {
-  res.send(workingdb);
+  res.send({ message: dbConnectionStatus });
 });
 
 app.use(express.json());
