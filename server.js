@@ -16,7 +16,7 @@ app.use(
       "https://local-frontend-mauve.vercel.app",
       "http://localhost:5173",
       "https://local-backend-inky.vercel.app",
-      "https://local-frontend.onrender.com/",
+      "https://local-frontend.onrender.com",
     ], // Allow requests from your frontend
     credentials: true, // Allow cookies to be sent with requests
   })
